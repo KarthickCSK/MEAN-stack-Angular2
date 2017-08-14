@@ -1,0 +1,25 @@
+{
+  "name": "mean-project",
+  "version": "1.0.0",
+  "description": "MEAN stack with ANgular2",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarthickCSK/MEAN-stack-Angular2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarthickCSK/MEAN-stack-Angular2/issues"
+  },
+  "homepage": "https://github.com/KarthickCSK/MEAN-stack-Angular2#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.6"
+  }
+}
