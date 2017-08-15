@@ -1,22 +1,124 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Bootstrap theme</a>
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">MEAN</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample04">
+      <ul class="navbar-nav mr-auto navbar-left">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto navbar-right login-signup-trigger-buttons">
+        <li class="nav-item login-trigger-button">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#loginModal">Login</button>
+        </li>
+        <li class="nav-item signup-trigger-button">
+          <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#signupModal">Signup</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Login Modal -->
+  <div class="modal fade bd-example-modal-sm" id="loginModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="card text-center">
+          <div class="card-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="card-title">LOGIN</h4>
+            <form class=" text-center ">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <a class="login-to-signup" data-toggle="modal"  data-dismiss="modal" data-target="#signupModal">Not a member? Signup with email</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          	<ul class="nav navbar-nav navbar-left">
-            	<li class="active"><a href="#">Home</a></li>
-            </ul>
-        	<ul class="nav navbar-nav navbar-right">
-            	<li><a href="#about">login</a></li>
-            	<li><a href="#contact">signup</a></li>
-          	</ul>
-        </div><!--/.nav-collapse -->
       </div>
-    </nav>
+    </div>
+    <hr style="width:500px; background-color:white;">
+    <div class="modal-dialog  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="card text-center">
+          <div class="card-body">
+            <h4 class="card-title">Try social Logins</h4>
+            <button type="button" class="btn btn-primary">Facebook</button>
+            <button type="button" class="btn btn-danger">Google   </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Signup Modal -->
+  <div class="modal fade bd-example-modal-sm" id="signupModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-sm" role="document">
+      <div class="modal-content">
+        <div class="card text-center">
+          <div class="card-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="card-title">SIGNUP</h4>
+            <form class="text-center" [formGroup]="signupForm" (ngSubmit)="submitForm(signupForm.value)">
+              <div class="form-group">
+                <label for="signupInputEmail1">Username</label>
+                <input
+                 type="email" 
+                 class="form-control" 
+                 id="signupUsername" 
+                 name="user_name"
+                 placeholder="Enter username"
+                 [formControl]="signupForm.controls['user_name']" >
+              </div>
+              <div class="form-group">
+                <label for="signupInputEmail1">Email address</label>
+                <input
+                 type="email" 
+                 class="form-control" 
+                 id="signupInputEmail1" 
+                 name="email"
+                 placeholder="Enter email"
+                 [formControl]="signupForm.controls['email']" >
+              </div>
+              <div class="form-group">
+                <label for="signupInputPassword1">Password</label>
+                <input
+                 type="password"
+                 class="form-control" 
+                 id="signupInputPassword1"
+                 name="password" 
+                 placeholder="Password"
+                 [formControl]="signupForm.controls['password']" >
+              </div>
+              <div class="form-group">
+                <label for="signupInputPassword1">Confirm Password</label>
+                <input
+                 type="password"
+                 class="form-control" 
+                 id="signupInputPassword1"
+                 name="re-password" 
+                 placeholder="Retype-Password"
+                 [formControl]="signupForm.controls['re-password']" >
+              </div>
+              <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid" >Submit</button>
+            </form>
+          </div>
+          <a class="signup-to-login" data-toggle="modal"  data-dismiss="modal" data-target="#loginModal">Already have an account? Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
