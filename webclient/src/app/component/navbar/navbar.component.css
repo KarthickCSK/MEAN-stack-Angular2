@@ -8,7 +8,7 @@
     {
     width:30px;
     height:30px;
-    margin-left: 130px;
+    margin-left: 942px;
     margin-top: -12px;
     border-radius: 15px;
     font-size:20px;
@@ -29,4 +29,7 @@
 }
 .circleOr-text{
 	margin-top: -1px;
+}
+.social-logins{
+    margin-top:-54px;
 }

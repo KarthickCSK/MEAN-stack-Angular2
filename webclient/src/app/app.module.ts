@@ -6,6 +6,7 @@ import { StartComponent } from './component/start/start.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { HomeComponent } from './component/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NavbarService } from './services/navbar.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AppRoutingModule } from './app-routing.module';
       AppRoutingModule,
       ReactiveFormsModule 
   ],
-  providers: [],
+  providers: [ NavbarService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

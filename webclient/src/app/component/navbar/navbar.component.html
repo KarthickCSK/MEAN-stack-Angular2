@@ -22,7 +22,7 @@
     </div>
   </nav>
   <!-- Login Modal -->
-  <div class="modal fade bd-example-modal-sm" id="loginModal" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade bd-example-modal-sm" id="loginModal" tabindex="1" role="dialog" aria-hidden="true">
     <div class="modal-dialog  modal-sm" role="document">
       <div class="modal-content">
         <div class="card text-center">
@@ -33,12 +33,12 @@
             <h4 class="card-title">LOGIN</h4>
             <form class=" text-center ">
               <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                <label for="LoginEmail">Email address</label>
+                <input type="email" class="form-control" id="LoginEmail" placeholder="Enter email">
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <label for="LoginPassword">Password</label>
+                <input type="password" class="form-control" id="LoginPassword" placeholder="Password">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
@@ -47,17 +47,11 @@
         </div>
       </div>
     </div>
-    <hr style="width:500px; background-color:white;">
-    <div class="modal-dialog  modal-sm" role="document">
-      <div class="modal-content">
-        <div class="card text-center">
-          <div class="card-body">
-            <h4 class="card-title">Try social Logins</h4>
-            <button type="button" class="btn btn-primary">Facebook</button>
-            <button type="button" class="btn btn-danger">Google   </button>
-          </div>
-        </div>
-      </div>
+    <hr style="width:350px; background-color:white;">
+    <div class=" social-logins text-center">
+      <h5 style="color:white; padding-bottom: 10px; padding-top: 10px;">Try social Logins</h5>
+      <button type="button text-center" class="btn btn-primary" style="width: 94px;">Facebook</button>
+      <button type="button text-center" class="btn btn-danger" style="width: 94px;">Google   </button>
     </div>
   </div>
 
@@ -72,16 +66,15 @@
               <span aria-hidden="true">&times;</span>
             </button>
             <h4 class="card-title">SIGNUP</h4>
-            <form class="text-center" [formGroup]="signupForm" (ngSubmit)="submitForm(signupForm.value)">
+            <form class="text-center">
               <div class="form-group">
-                <label for="signupInputEmail1">Username</label>
+                <label for="signupInputUsername1">Username</label>
                 <input
-                 type="email" 
+                 type="text" 
                  class="form-control" 
-                 id="signupUsername" 
-                 name="user_name"
+                 id="signupInputUsername1" 
                  placeholder="Enter username"
-                 [formControl]="signupForm.controls['user_name']" >
+                 >
               </div>
               <div class="form-group">
                 <label for="signupInputEmail1">Email address</label>
@@ -89,9 +82,9 @@
                  type="email" 
                  class="form-control" 
                  id="signupInputEmail1" 
-                 name="email"
                  placeholder="Enter email"
-                 [formControl]="signupForm.controls['email']" >
+                 value=""
+                 >
               </div>
               <div class="form-group">
                 <label for="signupInputPassword1">Password</label>
@@ -99,19 +92,17 @@
                  type="password"
                  class="form-control" 
                  id="signupInputPassword1"
-                 name="password" 
                  placeholder="Password"
-                 [formControl]="signupForm.controls['password']" >
+                 >
               </div>
               <div class="form-group">
-                <label for="signupInputPassword1">Confirm Password</label>
+                <label for="signupInputPassword2">Confirm Password</label>
                 <input
                  type="password"
                  class="form-control" 
-                 id="signupInputPassword1"
-                 name="re-password" 
+                 id="signupInputPassword2"
                  placeholder="Retype-Password"
-                 [formControl]="signupForm.controls['re-password']" >
+                 >
               </div>
               <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid" >Submit</button>
             </form>

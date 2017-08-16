@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-
+import { NavbarService } from '../../services/navbar.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -8,20 +7,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class NavbarComponent {
 
-  complexForm : FormGroup;
 
-  constructor(fb: FormBuilder){
-    this.complexForm = fb.group(
-    {
-      'user_name': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(8)])],
-      'email' : [null, Validators.required],
-      'password' : [null, Validators.required],
-      're-password' : [null, Validators.required]
-    })
+  constructor(){
+   
   }
 
-  submitForm(value: any){
-    console.log(value);
-  }
-
+  
 }
