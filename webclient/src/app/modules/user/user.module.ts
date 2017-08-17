@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: []
 })
-export class UserModule 
-{
-  user_name: string;
 
-  email: string;
-
-  password: string;
+export class UserModule {
+    constructor(
+      public user_name: string,
+	  public email: string,
+	  public password: string
+        ){}
 }

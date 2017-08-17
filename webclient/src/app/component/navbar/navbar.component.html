@@ -74,6 +74,7 @@
                  class="form-control" 
                  id="signupInputUsername1" 
                  placeholder="Enter username"
+                 [(ngModel)]="user_model.username"
                  >
               </div>
               <div class="form-group">
@@ -83,7 +84,7 @@
                  class="form-control" 
                  id="signupInputEmail1" 
                  placeholder="Enter email"
-                 value=""
+                 [(ngModel)]="user_model.email"
                  >
               </div>
               <div class="form-group">
@@ -93,6 +94,7 @@
                  class="form-control" 
                  id="signupInputPassword1"
                  placeholder="Password"
+                 [(ngModel)]="user_model.password"
                  >
               </div>
               <div class="form-group">
@@ -104,7 +106,7 @@
                  placeholder="Retype-Password"
                  >
               </div>
-              <button type="submit" class="btn btn-primary" [disabled]="!signupForm.valid" >Submit</button>
+              <button type="submit" class="btn btn-primary" >Submit</button>
             </form>
           </div>
           <a class="signup-to-login" data-toggle="modal"  data-dismiss="modal" data-target="#loginModal">Already have an account? Login</a>

@@ -1,5 +1,6 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpModule} from '@angular/http';
 import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { StartComponent } from './component/start/start.component';
@@ -19,7 +20,8 @@ import { NavbarService } from './services/navbar.service';
       BrowserModule,
       FormsModule,
       AppRoutingModule,
-      ReactiveFormsModule 
+      ReactiveFormsModule,
+      HttpModule 
   ],
   providers: [ NavbarService ],
   bootstrap: [AppComponent]

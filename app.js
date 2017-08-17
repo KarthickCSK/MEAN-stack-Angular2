@@ -2,6 +2,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const session = require('express-session');
+
 const index = require('./webserver/routes/index');
 const user = require('./webserver/routes/user');
 const config = require('./webserver/config/database');
@@ -10,6 +13,18 @@ const app = express();
 
 //Port number
 const port = 3000;
+
+//cofigure passport
+require('./webserver/config/passport')(passport);
+
+// required for passport
+app.use(session({
+    secret: 'sessionsecret', // session secret
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Middlewares
 app.use(cors());
