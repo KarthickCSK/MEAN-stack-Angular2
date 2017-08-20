@@ -66,7 +66,11 @@ module.exports = function(passport) {
   var fbStrategy = configAuth.FACEBOOK;
   fbStrategy.passReqToCallback = true;  // allows us to pass in the req from our route (lets us check if a user is logged in or not)
   passport.use(new FacebookStrategy({
-    fbStrategy
+    clientID: configAuth.FACEBOOK.clientID,
+    clientSecret: configAuth.FACEBOOK.clientSecret,
+    callbackURL: configAuth.FACEBOOK.callbackURL,
+    // allows us to pass in the req from our route (lets us check if a user is logged in or not)
+  passReqToCallback: true
   },    
   function(req, token, refreshToken, profile, done) {
     // asynchronous

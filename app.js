@@ -6,6 +6,7 @@ const passport = require('passport');
 const session = require('express-session');
 
 const index = require('./webserver/routes/index');
+const auth = require('./webserver/routes/auth');
 const user = require('./webserver/routes/user');
 const config = require('./webserver/config/database');
 const cors = require('cors')
@@ -40,16 +41,17 @@ mongoose.connection.on('err',()=>{
 });
 
 //Static files
-app.use(express.static(__dirname + '/webclient/dist/'));
+app.use(express.static(__dirname + '/webclient/src/'));
 
 // Connect server to Angular 2 Index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/webclient/dist/index.html'));
+  res.sendFile(path.join(__dirname + '/webclient/src/index.html'));
 });
 
 //Routes
 app.use('/',index);
 app.use('/user',user);
+app.use('/auth',auth);
 
 //initiate port
 app.listen(port,()=>{

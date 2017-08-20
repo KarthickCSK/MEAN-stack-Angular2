@@ -1,5 +1,5 @@
 var express = require('express');
-var RegisteredUser = require('../models/user');
+var User = require('../models/user');
 var router = express.Router();
 var passport=require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -9,34 +9,6 @@ var nodemailer = require('nodemailer');
 // loading up the configuration file containing facebook and goole authentication configuration
 var configAuth = require('../config/auth');
 var rand;
-
-/*LOCAL SIGNUP*/
-router.post('/signup', function(req, res) {
-    rand=Math.floor((Math.random() * 100) + 54);
-    var newUser=new RegisteredUser();
-    newUser.local.name = req.body.FirstName+req.body.LastName;
-    newUser.local.gender=req.body.Gender;
-    newUser.local.dob=req.body.dob;
-    newUser.local.conntactnumber=req.body.phonenumber;
-    newUser.local.email = req.body.email;
-    newUser.local.username = req.body.username;
-    newUser.local.password =req.body.pwd;
-    newUser.local.userType=req.body.userType;
-    newUser.local.verified=false;
-    newUser.local.verificationID=rand;
-    newUser.local.authType = "local";
-    newUser.save(function(err){
-        if(err)
-        {
-            res.send('Error in registration');
-        }
-        else
-        {
-            res.send("Successfully Register, Go and Check your mail to Activate your account");
-        }
-    });
-});
-
 
 router.get('/login',
   passport.authenticate('local'),
@@ -73,6 +45,7 @@ router.get('/logout', function(req, res) {
 
    router.get('/facebook', passport.authenticate('facebook', { scope: 'email' }) ,(req, res) =>
    {
+    console.log('came')
               res.json(req.user);
    });
 

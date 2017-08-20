@@ -1,5 +1,3 @@
-'use strict';
-// load the things we need
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const CONFIG = require('../config/auth');
@@ -8,10 +6,12 @@ const Schema =  mongoose.Schema;
 const UserSchema = mongoose.Schema({
 
     local: {
-			user_name:{ type: String, required: true },
+			username:{ type: String, required: true },
 			email:{ type: String, required: true },
 			password:{ type: String,required: true },
-			authType:{ type:String }
+			authType:{ type:String },
+      verified:Boolean,
+      verificationID:Number,
 		},
     facebook: {
       id: String,

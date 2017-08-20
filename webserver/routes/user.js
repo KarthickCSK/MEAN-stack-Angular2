@@ -9,27 +9,32 @@ router.get('/getAllUSer',(req, res, next)=>{
 });
 
 router.post('/addUser',(req, res, next)=>{
-	let newUser = new user({
-		user_name:req.body.username,
-		email:req.body.email,
-		password:req.body.password
-	});
+	console.log(req.body);
+	let newUser = new user();
+		newUser.local.username=req.body.username;
+		newUser.local.email=req.body.email;
+		newUser.local.password=req.body.password;
+	
+	console.log(newUser);
 	newUser.save((err, user)=>{
 		if(err){
 			res.json({
 				msg:'Failed to add new user',
-				error:err
+				error:err,
+				result: false
 			});
 		}else if(user){
 			res.json({
-				msg:'Successfully added new user'
+				user: user,
+				msg:'Successfully Registered',
+				result: true
 			});
 		}
 	});
 });
 
 router.delete('/deleteUser/:username',(req, res, next)=>{
-	user.remove({user_name:req.params.username}, function(err, result){
+	user.remove({username:req.params.username}, function(err, result){
 		if(err){
 			res.json({
 				msg:'Failed to remove user',

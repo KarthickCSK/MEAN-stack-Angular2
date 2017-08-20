@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NavbarService } from '../../services/navbar.service';
-import { UserModule } from '../../modules/user/user.module';
+import { User } from '../../modules/user/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,15 +9,39 @@ import { UserModule } from '../../modules/user/user.module';
   styleUrls: ['./navbar.component.css'],
   providers : [ NavbarService ] 
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
 
-  private user_model = new UserModule();
+  constructor( private _navbarService:NavbarService){}
 
-  constructor( private _navbarService:NavbarService ){
-   
+  @Input() user: User;
+  responseStatus:Object= [];
+  status:boolean ;
+
+  ngOnInit() {
+    this.user = new User();
+    this.user.username = "";
+    this.user.email = "";
+    this.user.password = "";
+    
   }
-  callRegisterUser(){
-    this._navbarService.registerNewUser(this.user_model)
+  register()
+  {
+    console.log(this.user);
+    this._navbarService.registerUser(this.user).subscribe(
+     data => console.log(this.responseStatus = data),
+     err => console.log(err),
+     () => console.log('Request Completed')
+    ); 
+    this.status = true;
+  }
+  routing(k){
+    console.log(k.target.value);
+    if(k.target.value=='/auth/facebook'){
+    this._navbarService.socialLoginsFb(k.target.value);
+    }
+    if(k.target.value=='/auth/google'){
+    this._navbarService.socialLoginsGoogle(k.target.value);
+    }
   }
   
 }
