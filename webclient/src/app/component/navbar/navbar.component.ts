@@ -15,13 +15,14 @@ export class NavbarComponent implements OnInit {
 
   @Input() user: User;
   responseStatus:Object= [];
-  status:boolean ;
+  loggedIn:boolean ;
 
   ngOnInit() {
     this.user = new User();
     this.user.username = "";
     this.user.email = "";
     this.user.password = "";
+    this.loggedIn = false;
     
   }
   register()
@@ -32,16 +33,15 @@ export class NavbarComponent implements OnInit {
      err => console.log(err),
      () => console.log('Request Completed')
     ); 
-    this.status = true;
+    this.loggedIn = true;
   }
-  routing(k){
-    console.log(k.target.value);
-    if(k.target.value=='/auth/facebook'){
-    this._navbarService.socialLoginsFb(k.target.value);
-    }
-    if(k.target.value=='/auth/google'){
-    this._navbarService.socialLoginsGoogle(k.target.value);
-    }
+  socialLoginsrouting(k){
+    this._navbarService.socialLogins(k.target.value).subscribe(
+     data => console.log("data :",this.responseStatus = data),
+     err => console.log("err:",err),
+     () => console.log('Request Completed')
+    ); 
+    this.loggedIn = true;
   }
   
 }

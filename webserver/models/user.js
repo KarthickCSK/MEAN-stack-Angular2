@@ -6,10 +6,10 @@ const Schema =  mongoose.Schema;
 const UserSchema = mongoose.Schema({
 
     local: {
-			username:{ type: String, required: true },
-			email:{ type: String, required: true },
-			password:{ type: String,required: true },
-			authType:{ type:String },
+			username:String,
+			email:String,
+			password:String,
+			authType:String,
       verified:Boolean,
       verificationID:Number,
 		},
@@ -19,7 +19,6 @@ const UserSchema = mongoose.Schema({
       email: String,
       name: String,
       authType: String,
-      displayName:String,
       gender:String,
       photo:String
     },

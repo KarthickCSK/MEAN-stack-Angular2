@@ -5,19 +5,16 @@ import { User } from '../modules/user/user'
 @Injectable()
 export class NavbarService {
     http: Http;  
-    posts_Url: string = 'http://localhost:3000/user/addUSer';
+    registerUserUrl: string = 'http://localhost:3000/user/addUSer';
+    url: string = 'http://localhost:3000'
     constructor(public _http: Http) {
        this.http = _http;
     }
     registerUser(user:User) {    
-       return this.http.post(this.posts_Url, user, {  }).map(res =>  res.json());           
+       return this.http.post(this.registerUserUrl, user, {  }).map(res =>  res.json());           
     }
-    socialLoginsFb(url){
-    	console.log(url);
-    	return this.http.get('http://localhost:3000/auth/facebook');
-    }
-    socialLoginsGoogle(url){
-    	console.log(url);
-    	return this.http.get('http://localhost:3000/auth/google');
+    socialLogins(route:String){
+        console.log(route)
+    	return this.http.get(this.url+route).map(res =>  res.json());
     }
 }

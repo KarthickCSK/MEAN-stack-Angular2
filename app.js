@@ -8,8 +8,9 @@ const session = require('express-session');
 const index = require('./webserver/routes/index');
 const auth = require('./webserver/routes/auth');
 const user = require('./webserver/routes/user');
+
 const config = require('./webserver/config/database');
-const cors = require('cors')
+const cors = require('cors');
 const app = express();
 
 //Port number
@@ -28,8 +29,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Middlewares
-app.use(cors());
+app.options('*', cors())
 app.use(bodyParser.json());
+app.use(function(req, res, next){
+	res.header('Access-Control-Allow-Origin', "");
+	res.header('Access-Control-Allow-Origin', "*");
+	res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers', "Content-Type");
+	next();
+})
 
 //connect to database
 mongoose.connect(config.uri);
@@ -43,16 +51,15 @@ mongoose.connection.on('err',()=>{
 //Static files
 app.use(express.static(__dirname + '/webclient/src/'));
 
-// Connect server to Angular 2 Index.html
+/** Connect server to Angular 2 Index.html
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/webclient/src/index.html'));
-});
+  res.sendFile(path.join(__dirname + '/webclient/ExceptionViews/unknownRoutes.html'));
+});**/
 
 //Routes
 app.use('/',index);
 app.use('/user',user);
 app.use('/auth',auth);
-
 //initiate port
 app.listen(port,()=>{
 	console.log('Server started at',port);

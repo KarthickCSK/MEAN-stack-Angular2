@@ -34,15 +34,19 @@ router.post('/addUser',(req, res, next)=>{
 });
 
 router.delete('/deleteUser/:username',(req, res, next)=>{
-	user.remove({username:req.params.username}, function(err, result){
+	user.remove({'local.username':req.params.username}, function(err, result){
 		if(err){
 			res.json({
 				msg:'Failed to remove user',
 				error:err
 			});
-		}else if(result){
+		}else if(result.result.n==1){
 			res.json({
-				msg:'Successfully removed user'
+				msg:'Successfully removed user',
+			});
+		}else if(result.result.n==0){
+			res.json({
+				msg:'User not found'
 			});
 		}
 	});	
